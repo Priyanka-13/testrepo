@@ -1,0 +1,12 @@
+--- 
+- 
+  hosts: localhost 
+  tasks: 
+    - 
+      file: path=/etc/ansible state=touch owner=root group=root mode=0555
+      name: "create a new file"
+      notify: handler1
+     
+   #handlers: 
+   # - name: handler1
+    #  debug: msg="test debug on"

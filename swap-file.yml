@@ -1,0 +1,27 @@
+--- 
+ - 
+   host: centos
+   become: true
+   tasks: 
+ - 
+   command: dd if=/dev/zero of= /root/myswapfile bs=1024m count= 200 creates= /root/myswapfile
+   name: "Create swap file"
+ - 
+   file: path=/root/myswapfile  owner=root group=root mode=0600
+   name: "Change swap file permissions"
+ - 
+   command: file /root/myswapfile
+   name: "Check swap file type"
+   register: swapfile
+ - 
+   command: sudo mkswap /root/myswapfile
+   name: "Make swap file"
+   when: swapfile.stdout.find('swap file') == -1
+ - 
+   mount: name=none src=/root/myswapfile fstype=swap opts=sw  passno=0 dump=0 state=present
+   name: "Write swap entry in fstab"
+ - 
+   command: swapon /root/myswapfile
+   name: "Mount swap"
+   when: ansible_swaptotal_mb < 1
+

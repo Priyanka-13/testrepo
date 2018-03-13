@@ -1,0 +1,21 @@
+--- 
+- 
+  become: true
+  hosts:  centos
+  tasks:
+  #vars:
+    
+    #- new_pub_key: /root/.ssh/priyanka-ubuntu.pub
+    #- new_priv_key: /root/.ssh/priyanka-ubuntu
+
+#- tasks:
+    - 
+      authorized_key: key= {{ lookup('file', '/root/.ssh/priyanka-ubuntu.pub') }} user=root state=present
+      name: "Add new key to authorized_keys"
+    #- 
+     # name: "Make use of new private key when connecting"
+      #set_fact: ansible_private_ssh_key={{ '/root/.ssh/priyanka-ubuntu' }}
+    #- 
+      #authorized_key: key= {{ lookup('file', '/root/.ssh/priyanka-ubuntu.pub') }} user=root state=present exclusive=yes
+      #name: "Make our new key exclusive"
+ 

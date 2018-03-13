@@ -1,0 +1,6 @@
+---
+- hosts: centos
+  tasks:
+  - name: "copying file"
+    template: src=/etc/ansible/priyanka.j2 dest=/home
+     

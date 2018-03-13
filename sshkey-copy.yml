@@ -1,0 +1,10 @@
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+   - name: add new .pub key to client node's authorized_keys
+     lineinfile:
+      path: /root/.ssh/authorized_keys
+      insertafter: EOF
+      line: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyR8FbVOg+/oEQsF0YfPFDnVklOh5a0ekk2q2yQVLnSmGWcAoyRTW4wV4mebj+KVLPh0I9J4gOfpXsevjzhr3hgoRgaWpbkN/s27odq5n0AdN8xkTcLqwCIVSuBQzP5ah0AMD9cs3Ub+EA0e8xgBHid2MB8Ehu+MD/QhkdK2EKs/NAz1LQ99Mrn3jNIXTRTYpSiD4ROtMFuKEdFlnbsAtYlXmV/P35mXC+RX7LafidOcB5urekZp0QxMJ/VVb2WP6va1tsGGe91iBV0Y92JxLliabeJk7IAJwOyIW2EdyQiG5oU5RQEuStVE5ti9RoCV77Qa2SG9g4AC+uQkup8jFn root@vagrant-ubuntu-trusty-64'
+      backup: yes

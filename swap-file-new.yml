@@ -1,0 +1,41 @@
+--- 
+- 
+  hosts: ubuntu
+  tasks: 
+  - 
+    command: dd if=/dev/zero of=/mnt/swapfile count=4096 bs=1MiB
+    name: "create the file to be used for swap"
+    when: ansible_swaptotal_mb == "0"
+  - 
+    command: mkswap /mnt/swapfile
+    name: "format the file for swap"
+    when: ansible_swaptotal_mb == "0"
+  - 
+    file: path=/mnt/swapfile owner=root group=root mode=0600
+    name: "change swap file permissions"
+    when: ansible_swaptotal_mb == "0"
+  - 
+    command: swapon /mnt/swapfile
+    name: "add the file to the system as a swap file"
+    when: ansible_swaptotal_mb == "0"
+  - 
+    command: dd if=/dev/zero of=/mnt/swapfile count=4096 bs=1MiB
+    name: "create the file to be used for swap"
+    when: ansible_swaptotal_mb != "0"
+  - 
+    command: mkswap /mnt/swapfile
+    name: "format the file for swap"
+    when: ansible_swaptotal_mb != "0"
+  - 
+    file: path=/mnt/swapfile owner=root group=root mode=0600
+    name: "change swap file permissions"
+    when: ansible_swaptotal_mb != "0"
+  - 
+    command: swapon /mnt/swapfile
+    name: "add the file to the system as a swap file"
+    when: ansible_swaptotal_mb != "0"
+  - 
+    mount: src=/mnt/swapfile name=swap fstype=swap state=present opts=defaults passno=0 dump=0
+    name: "make swap space permanent"
+    when: ansible_swaptotal_mb != "0"
+

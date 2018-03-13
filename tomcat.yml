@@ -1,0 +1,23 @@
+--- 
+- 
+  hosts: centos
+  tasks: 
+  - 
+    name: "install the latest version of Java"
+    yum: 
+      name: java-1.8.0-openjdk
+      state: latest
+  - 
+    name: "copy Tomcat"
+    copy: src=/opt/apache-tomcat-8.5.28.tar.gz dest=/opt/apache-tomcat-8.5.28.tar.gz
+
+
+  - name: "Extract Tomcat archive"
+    command: tar zxvf /opt/apache-tomcat-8.5.28.tar.gz -C /opt/ creates=/opt/apache-tomcat
+
+  - name : "copy .war"
+    copy : src=/home/sample.war dest=/opt/apache-tomcat-8.5.28/webapps
+   
+  - name: Start Tomcat
+    command: nohup /opt/apache-tomcat-8.5.28/bin/startup.sh
+    become: true

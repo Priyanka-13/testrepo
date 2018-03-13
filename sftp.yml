@@ -1,0 +1,13 @@
+--- 
+- 
+  name: "Create a login user"
+  user: 
+    createhome: true
+    groups: priyanka
+    home: /home/priyanka
+    name: priyanka
+    password: '$6$hIHjHpXAvVPpN$Zq7aAAltnaBTk5YE07gq6Qmc18LJ7J7n4yDrDJbukkY8/pYHTyqLyTodVX1vwRAmOp0lZDRycBmm0/TkYJf7r1'
+    shell: /bin/bash
+    state: present
+    system: false
+

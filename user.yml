@@ -1,0 +1,46 @@
+---
+- hosts: localhost
+  sudo : yes
+
+  tasks:
+
+  - name: "add several users"
+    user:
+     name: "{{ item }}"
+     state: present
+
+    with_items:
+      - testuser1
+      - testuser2
+      - testuser3
+      - testuser4
+      - testuser5
+    register: var1
+  - debug: var=var1
+  - name: "create files"
+    file: 
+     path: /tmp/testuser1.txt
+     state: touch
+     mode: 0644
+     group: testuser1
+     owner: testuser1
+  - file:
+     path: /tmp/testuser2.txt
+     state: touch
+     mode: 0644
+     group: testuser2
+     owner: testuser2
+  - file:
+     path: /tmp/testuser3.txt
+     state: touch
+     mode: 0644
+     group: testuser3
+     owner: testuser3
+  - file:
+     path: /tmp/testuser4.txt
+     state: touch
+     mode: 0644
+     group: testuser4
+     owner: testuser4
+     
+

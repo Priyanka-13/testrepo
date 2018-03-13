@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+  - name: "copy a file"
+    copy: src=/etc/ansible/site.yml dest=/tmp
+    notify: handler1
+
+  handlers: 
+  - name: handler1
+    debug: msg="test debug on"
+     

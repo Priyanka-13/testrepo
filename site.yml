@@ -1,0 +1,11 @@
+--- 
+- 
+  become: true
+  hosts: test
+  tasks: 
+    - 
+      action: "apt name=nginx state=installed"
+      name: "Install the nginx"
+    - 
+      name: "Starting nginx"
+      service: "name=nginx state=restarted"
