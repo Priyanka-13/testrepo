@@ -1,0 +1,151 @@
+***************************************Devops Ninja Program***********************************************
+
+
+Ansible Assignment Day 3:
+
+Task 1 :
+
+Create and delete ninja directory on host machine:
+
+Command to create a directory :
+
+sudo ansible test -m file -a 'path=/tmp/priyanka state=directory'
+
+Logs-
+
+192.168.1.18 | SUCCESS => {
+    "changed": true,
+    "gid": 0,
+    "group": "root",
+    "mode": "0755",
+    "owner": "root",
+    "path": "/tmp/priyanka",
+    "size": 4096,
+    "state": "directory",
+    "uid": 0
+}
+
+Command to delete a directory :
+
+sudo ansible test -m file -a 'path=/tmp/priyanka state=absent'
+
+Logs :
+
+192.168.1.18 | SUCCESS => {
+    "changed": true,
+    "path": "/tmp/priyanka",
+    "state": "absent"
+}
+
+
+Task 2 -
+Set hostname on all nodes from remote machine
+Command -
+ 
+sudo ansible test -m hostname -a 'name=web01'
+Logs -
+
+192.168.1.18 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_domain": "",
+        "ansible_fqdn": "web01",
+        "ansible_hostname": "web01",
+        "ansible_nodename": "web01"
+    },
+    "changed": true,
+    "name": "web01"
+}
+
+
+Task 3 :
+
+Fetch os of all nodes and store o/p into a file, use min two different machine of different flavour of os.
+
+Command :
+
+sudo ansible --become all  -m setup | grep ansible_distribution &> file1
+
+Output :
+
+ "ansible_distribution": "CentOS",
+        "ansible_distribution_file_parsed": true,
+        "ansible_distribution_file_path": "/etc/redhat-release",
+        "ansible_distribution_file_variety": "RedHat",
+        "ansible_distribution_major_version": "7",
+        "ansible_distribution_release": "Core",
+        "ansible_distribution_version": "7.4.1708",
+        "ansible_distribution": "Ubuntu",
+        "ansible_distribution_file_parsed": true,
+        "ansible_distribution_file_path": "/etc/os-release",
+        "ansible_distribution_file_variety": "Debian",
+        "ansible_distribution_major_version": "14",
+        "ansible_distribution_release": "trusty",
+        "ansible_distribution_version": "14.04",
+
+
+Task 5 :
+
+Problem statement: Using Adhoc command
+Step 1:
+
+    * Install apache on Debian machine
+    * Cross check apache installed or not from remote machine
+    * Apache run  on 8082 port
+    * Create two virtual host
+    * Restart apache from remote machine
+
+Commands :
+
+1.	sudo ansible -i /etc/ansible/hosts web01 --become  -m apt -a 'pkg=apache2 state=installed'
+
+2.	 sudo ansible web01 --become  -m lineinfile -a 'dest=/etc/apache2/ports.conf' regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8082>" state=present’
+
+3.	sudo ansible web01 --become  -m lineinfile -a 'dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8082>" state=present’
+
+4.	sudo ansible web01 -m service -a 'name=apache2 state=restarted' --become
+
+
+  * Install nginx on centos machine
+   * Nginx run on 8080 port.
+Commands :
+
+sudo ansible web -m yum -a 'pkg=nginx state=installed' --become
+
+sudo ansible web -m service -a "name=nginx state=restarted" --become
+
+sudo ansible web -a "service nginx status"
+
+sudo ansible web -m copy -a "src=/home/vagrant/nginx.conf dest=/etc/nginx/" 
+(Changed the port to 8080 and copied file to nginx)
+
+
+
+*** Configure Nginx - configure it to run as reverse proxy to apache
+Installing httpd in centos :
+
+sudo ansible  centos --become  -m yum -a 'pkg=httpd state=latest'
+sudo ansible  centos --become  -m service -a 'pkg=httpd state=restarted'
+sudo ansible centos -a "service httpd status"
+
+***Now change the port of httpd.conf file and copy it to client node :
+
+sudo ansible centos -m copy -a 'src=/etc/ansible/httpd.conf dest=/etc/httpd/conf'
+
+sudo ansible  centos --become   -a '/bin/systemctl start httpd.service'
+
+***Installing nginx centos:
+
+sudo ansible  centos -m yum -a 'name=http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm state=present'
+
+  sudo ansible centos -m yum -a 'name=epel-release state=latest'
+
+  sudo ansible centos -b -m yum -a 'pkg=nginx state=latest'
+
+ sudo ansible centos -a "service nginx status" (it should not be running now)
+
+***(Create a nginx.conf file and change the server name and add proxy_pass and then copy it to client node) :
+
+sudo ansible centos -m copy -a 'src=/etc/ansible/nginx.conf dest=/etc/nginx'
+
+sudo ansible  centos --become   -a '/bin/systemctl start nginx.service'
+
