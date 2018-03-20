@@ -1,0 +1,213 @@
+  git config --global user.email "pksharma08nov@gmail.com"
+   git config --global user.name "priyankasharma"
+   git commit -m "initial commit"
+   cat readme.md
+  git status
+  cd ..
+  mkdir test1
+  cd test1
+  git init
+  ll
+  git remote add origin "https://github.com/priyanka08-github/testrepo.git"
+  git remote -v
+  git branch
+   40  git pull origin master
+   41  ls
+   42  cat README.md
+   43  vim README.md
+   44  git status
+   45  git add -A
+   46  git status
+   47  git commit -m "modified file"
+   48  vim README.md
+   49  git commit -m "changed file"
+   50  git commit -m "changed file" README.md
+   51  vim README.md
+   52  git add .
+   53  git commit -m "dsfsdfdsds"
+   54  vim README.md
+   55  git commit -m "dsfsdfdsds"
+   56  git commit -m "dsfsdfdsds" README.md
+   57  git status
+   58  git log
+   59  git push origin master
+   60  vim priyanka
+   61  git add .
+   62  git commit -m "new file"
+   63  vim README.md
+   64  git add .
+   65  git commit -m "cikmygbtfrvrv"
+   66  git clone https://github.com/priyanka08-github/testrepo.git
+   67  ls
+   68  cd testrepo/
+   69  ls
+   70  cd ..
+   71  git pull origin master
+   72  ls
+   73  git status
+   74  cd ..
+   75  git status
+   76  cd test1
+   77  ls
+   78  vim priyanka
+   79  git diff
+   80  git log
+   81  git diff ef97912e14e60b79e7a24dedc1ce6e35a36b583e 8fe2f6bcbb0a7ca524b8a5e66d265f7dbd9ba6e4
+   82  ls
+   83  rm priyanka
+   84  ls
+   85  git branch
+   86  clear
+   87  git branch volume
+   88  git branch
+   89  git checkout volume
+   90  git branch
+   91  ls
+   92  vim new
+   93  git add .
+   94  git add -A
+   95  git commit -m "newfile"
+   96  ls
+   97  git checkout master
+   98  ls
+   99  git status
+  100  git branch
+  101  git add -A
+  102  git commit -a -m "commit all"
+  103  git status
+  104  ls
+  105  git checkout volume
+  106  ls
+  107  git status
+  108  git checkout
+  109  git checkout master
+  110  git log
+  111  ls
+  112  git status
+  113  git branch second
+  114  git checkout second
+  115  ls
+  116  git reflog
+  117  git branch
+  118  touch 1233
+  119  git add -A
+  120  git commit -m ""file added"
+  121  git commit -m "file added"
+  122  git checkout master
+  123  vim 1233
+  124  git add _a
+  125  git add -A
+  126  git commit -m "new file"
+  127  git merge second master
+  128  ls
+  129  git branch
+  130  vim test.txt
+  131  git checkout second
+  132  git checkout master
+  133  gut status
+  134  gt status
+  135  git status
+  136  git add -m "
+  137  git commit -m "modified"
+  138  git status
+  139  git branch
+  140  git checkout second
+  141  ls
+  142  vim test.txt
+  143  git add -A
+  144  git commit -m "sdjfhd"
+  145  git status
+  146  git branch
+  147  git merge master
+  148  git mergetool
+  149  ls
+  150  cat test.txt
+  151  git branch
+  152  git checkout master
+  153  git add -A -m "haskjchksj"
+  154  git status
+  155  git add -A -m "commiting"
+  156  git add -A
+  157  git commit -m "skjdchkjd"
+  158  git status
+  159  ls
+  160  cat test.txt
+  161  git branch
+  162  git checkout master
+  163  ls
+  164  cat test.txt
+  165  ll
+  166  git branch
+  167  ll
+  168  vim test2.txt
+  169  ll
+  170  git branch
+  171  git add .
+  172  git commit -m "Addded test2.txt"
+  173  git status
+  174  git checkout second
+  175  ll
+  176  vim test2.txt
+  177  git add .
+  178  git commit -m "Added test2.txt"
+  179  ll
+  180  git status
+  181  git branch
+  182  git merge master
+  183  git checkout master
+  184  git branch
+  185  git merge second -m "merge test2.txt in master"
+  186  ll
+  187  vim test2.txt
+  188  git add .
+  189  git commit -m "Modified test2.txt"
+  190  git merge second -m "Merger second into master again"
+  191  ll
+  192  cat test2.txt
+  193  git branch second
+  194  git checkout second
+  195  ll
+  196  cat test2.txt
+  197  git checkout master
+  198  cat test2.txt
+  199  git tag
+  200  git tag v1
+  201  git tag
+  202  touch test1234
+  203  git add .
+  204  git commit -m "NEW"
+  205  ls
+  206  git tag
+  207  git revert v1
+  208  ls
+  209  git tag
+  210  git checkout v1
+  211  ls
+  212  clear
+  213  git tag
+  214  ls
+  215  git log
+  216  git show
+  217  git log
+  218  git alias commit ci
+  219  git st
+  220  git status
+  221  git config --global alias.sta status
+  222  git sta
+  223  git st
+  224  git branch
+  225  git checkout master
+  226  git st
+  227  git config alias.sta status
+  228  git sta
+  229  git checkout second
+  230  git sta
+  231  ls
+  232  cd /
+  233  ls
+  234  cd /
+  235  ls
+  236  cd test1
+  237  ls
+  238  git sta
+
