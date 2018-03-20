@@ -1,0 +1,56 @@
+Hello Team,
+Here’s the summary of Maven build tool :
+
+Maven is a build automation tool used primarily for Java projects.Maven uses Convention over Configuration, which means developers are not required to create build process themselves.
+Developers do not have to mention each and every configuration detail. Maven provides sensible default behavior for projects. When a Maven project is created, Maven creates default project structure. Developer is only required to place files accordingly and he/she need not to define any configuration in pom.xml.
+Maven simplifies the code handling and process of building the project. Most of the projects follow maven structure.
+quick project setup, no complicated build.xml files, just a POM and go
+all developers in a project use the same jar dependencies due to centralized POM.
+getting a number of reports and metrics for a project "for free"
+reduce the size of source distributions, because jars can be pulled from a central location
+groupId: Generally groupId refers to domain id. For best practices company name is used as groupId. It identifies the project uniquely.
+artifactId: It is basically the name of the Jar without version.
+version: This tag is used to create a version of the project.
+Local repository: Maven downloads all the required dependencies and stores in the local repository called m2.
+Build Life Cycle:
+Basic maven phases are used as below.
+clean: deletes all artifacts and targets which are created already.
+compile: used to compile the source code of the project.
+test: test the compiled code and these tests do not require to be packaged or deployed.
+package: package is used to convert your project into a jar or war etc.
+install: install the package into the local repository for use of another project.
+POM stands for Project Object Model. It is fundamental unit of work in Maven. It is an XML file that resides in the base directory of the project as pom.xml.
+The POM contains information about the project and various configuration detail used by Maven to build the project(s).
+POM also contains the goals and plugins. While executing a task or goal, Maven looks for the POM in the current directory. It reads the POM, gets the needed configuration information, and then executes the goal. Some of the configuration that can be specified in the POM are following −
+project dependencies
+plugins
+goals
+build 
+project version
+Maven defines a standard directory structure:
+- src : directory is the root directory of source code and test code.
+  - main : directory is the root directory for source code related to the application.
+    - java : contains the Java code for the application.
+    - resources : directory contains the resources needed by your project.
+    - webapp : directory contains Java web application(WAR is here too).The webapp directory contains the WEB-INF directory.
+
+
+  - test : directory contains the test source code.
+    - java 
+    - resources
+
+
+
+- target : directory is created by Maven. It contains all the compiled classes, JAR files etc.When executing the mvn clean command, Maven would clean the target directory.
+
+Local Repository
+Maven local repository is a local folder on your machine.
+Maven local repository is created when you run any maven command for the first time.Maven local repository stores all dependency library jars, plugin jars, etc on your development machine.
+When Maven downloads the dependency jars it stores the jar files in the local Maven repository.
+Central Repository
+Maven central repository is repository managed by Maven community.
+Remote Repository
+Sometime we need to set up a Maven repository inside a company or a project development team to host our own libraries.
+ 
+
+
